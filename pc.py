@@ -1,7 +1,4 @@
 import os
-import platform
-import sys
-import time
 from datetime import datetime
 
 print("[+] All imports completed successfully")
@@ -302,4 +299,6 @@ else:
     print("[-] Skipping github-desktop")
     log.write(f"{datetime.now()}: Not installing github-desktop\n")
 
-
+log.write(f"{datetime.now()}: Installer completed. Have a nice day!")
+log.close()
+print("[+] Installer Completed\nHave a nice day!")
