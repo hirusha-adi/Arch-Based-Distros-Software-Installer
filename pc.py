@@ -48,7 +48,7 @@ else:
     print("[-] Skipping bpytop")
     log.write(f"{datetime.now()}: Not installing bpytop\n")
 
-# htop (drop down terminal)
+# htop (system monitor tool)
 yn = input("[?] Install - htop (system monitor tool):")
 if yn.lower().startswith("y"):
     os.system("pacman -S htop")

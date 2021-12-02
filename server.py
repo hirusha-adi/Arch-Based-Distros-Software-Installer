@@ -31,7 +31,7 @@ print(r"""
             Install
 """)
 
-# gnome-disk-utility (Media Server)
+# gnome-disk-utility (Manage Partitions+Automount fstab GUI easily (sort of))
 yn = input(
     "[?] Install - gnome-disk-utility (Manage Partitions+Automount fstab GUI):")
 if yn.lower().startswith("y"):
@@ -127,7 +127,7 @@ log.write(f"{datetime.now()}: systemctl start sshd\n")
 os.system("systemctl enable sshd")
 log.write(f"{datetime.now()}: systemctl enable sshd\n")
 
-# jellyfin Server
+# Jellyfin Server
 print("[*] Setting up Jellyfin Server")
 log.write(f"{datetime.now()}: Setting up Jellyfin Server\n")
 os.system("systemctl start jellyfin")
@@ -135,7 +135,7 @@ log.write(f"{datetime.now()}: systemctl start jellyfin\n")
 os.system("systemctl enbale jellyfin")
 log.write(f"{datetime.now()}: systemctl enbale jellyfin\n")
 
-# airsonic Server
+# Airsonic Server
 print("[*] Setting up Airsonic Server")
 log.write(f"{datetime.now()}: Setting up Airsonic Server\n")
 os.system("systemctl start airsonic")
@@ -143,7 +143,7 @@ log.write(f"{datetime.now()}: systemctl start airsonic\n")
 os.system("systemctl enable airsonic")
 log.write(f"{datetime.now()}: systemctl enable airsonic\n")
 
-# netdata Server
+# Netdata Server
 print("[*] Setting up Netdata Server")
 log.write(f"{datetime.now()}: Setting up Netdata Server\n")
 os.system("systemctl start netdata")
@@ -155,7 +155,7 @@ log.write(f"{datetime.now()}: ufw allow 19999/tcp\n")
 os.system("ufw reload")
 log.write(f"{datetime.now()}: ufw reload\n")
 
-# filebrowser Server
+# Filebrowser Server
 print("[*] Setting up FileBrowser Server")
 log.write(f"{datetime.now()}: Setting up FileBrowser Server\n")
 port = input("[?] Port (defaults to 8060): ")
