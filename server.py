@@ -7,7 +7,6 @@ def clear():
     os.system("clear")
 clear()
 
-LOG = ""
 log = open(f"{os.getcwd()}/server.log", "w+", encoding="utf-8")
 log.write(f"{datetime.now()}: Log file created, all imports were successfull\n")
 
@@ -156,11 +155,11 @@ print("[*] Setting up FileBrowser Server")
 log.write(f"{datetime.now()}: Setting up FileBrowser Server\n")
 port = input("[?] Port (defaults to 8060): ")
 if (port.strip()) == "":
-    port = "8060"
+    port = "8060" # default port
 log.write(f"{datetime.now()}: Selected port - {port}\n")
 filepath = input("[?] File Path: ")
 if (filepath.strip()) == "":
-    filepath = "/mnt/"
+    filepath = "/mnt/" # default root folder for server
 log.write(f"{datetime.now()}: Selected root file path - {filepath}\n")
 # fbr_cmnd = f"""#!/bin/bash\nfilebrowser -a "0.0.0.0" -p "{port}" -r "{filepath}" """
 fbr_cmnd = f"""filebrowser -a "0.0.0.0" -p "{port}" -r "{filepath}" """
