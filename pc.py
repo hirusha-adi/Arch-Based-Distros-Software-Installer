@@ -2,8 +2,12 @@ import os
 from datetime import datetime
 
 print("[+] All imports completed successfully")
+
+
 def clear():
     os.system("clear")
+
+
 clear()
 
 LOG = ""
@@ -234,7 +238,7 @@ if yn.lower().startswith("y"):
 else:
     print("[-] Skipping signal-desktop")
     log.write(f"{datetime.now()}: Not installing signal-desktop\n")
-    
+
 clear()
 print(r"""
  ____                 _                                  _   
@@ -276,7 +280,8 @@ else:
 yn = input("[?] Install - pycharm-community-edition (IDE for Python):")
 if yn.lower().startswith("y"):
     os.system("yay -S pycharm-community-edition")
-    log.write(f"{datetime.now()}: Installed pycharm-community-edition with yay\n")
+    log.write(
+        f"{datetime.now()}: Installed pycharm-community-edition with yay\n")
 else:
     print("[-] Skipping pycharm-community-edition")
     log.write(f"{datetime.now()}: Not installing pycharm-community-edition\n")

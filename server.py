@@ -3,8 +3,12 @@ import sys
 from datetime import datetime
 
 print("[+] All imports completed successfully")
+
+
 def clear():
     os.system("clear")
+
+
 clear()
 
 log = open(f"{os.getcwd()}/server.log", "w+", encoding="utf-8")
@@ -28,7 +32,8 @@ print(r"""
 """)
 
 # gnome-disk-utility (Media Server)
-yn = input("[?] Install - gnome-disk-utility (Manage Partitions+Automount fstab GUI):")
+yn = input(
+    "[?] Install - gnome-disk-utility (Manage Partitions+Automount fstab GUI):")
 if yn.lower().startswith("y"):
     os.system("pacman -S gnome-disk-utility")
     log.write(f"{datetime.now()}: Installed gnome-disk-utility with pacman\n")
@@ -155,11 +160,11 @@ print("[*] Setting up FileBrowser Server")
 log.write(f"{datetime.now()}: Setting up FileBrowser Server\n")
 port = input("[?] Port (defaults to 8060): ")
 if (port.strip()) == "":
-    port = "8060" # default port
+    port = "8060"  # default port
 log.write(f"{datetime.now()}: Selected port - {port}\n")
 filepath = input("[?] File Path: ")
 if (filepath.strip()) == "":
-    filepath = "/mnt/" # default root folder for server
+    filepath = "/mnt/"  # default root folder for server
 log.write(f"{datetime.now()}: Selected root file path - {filepath}\n")
 # fbr_cmnd = f"""#!/bin/bash\nfilebrowser -a "0.0.0.0" -p "{port}" -r "{filepath}" """
 fbr_cmnd = f"""filebrowser -a "0.0.0.0" -p "{port}" -r "{filepath}" """
