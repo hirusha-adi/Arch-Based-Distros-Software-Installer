@@ -40,6 +40,7 @@ Messaging -
 - telegram-desktop (messaging app)
 - whatsapp-for-linux (messaging app)
 - signal-desktop (messaging app)
+- 189 PLUGINS FOR DISCORD (Better Discord)
 
 Development -
 
@@ -104,3 +105,13 @@ chmod +x startfilebrowser
 cp ./startfilebrowser /bin/startfilebrowser
 # run startfilebrowser in the terminal
 ```
+
+To Add -
+
+`zerobin (with python3)`,
+
+`docker and docker-compose`,
+
+`portainer (for docker)`
+
+`uptime kuma (with docker)`,

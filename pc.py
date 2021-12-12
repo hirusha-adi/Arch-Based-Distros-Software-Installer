@@ -6,15 +6,14 @@ import requests as req
 
 print("[+] All imports completed successfully")
 
-
-def clear():
-    os.system("clear")
-
-
 try:
     USERNAME = f'{list(os.listdir("/home/"))[0]}'
 except IndexError:
     sys.exit("[-] No user folder found in /home/")
+
+
+def clear():
+    os.system("clear")
 
 
 def better_discord_plugins(logfile):
@@ -923,7 +922,8 @@ def better_discord_plugins(logfile):
                     "plugin"),
     )
 
-    yn = input(f"[?] Download and Install all plugins: ")
+    yn = input(
+        f"[?] Download and Install all plugins (189 or select them manually): ")
     print("[+] PLEASE DO NOT CLOSE THE PROGRAM. DOWNLOADING 180 PLUGINS")
     if yn.lower().startswith("y"):
         for dlname, file_name, dllink, dltype in all_stuff:

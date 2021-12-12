@@ -9,17 +9,6 @@ def clear():
     os.system("clear")
 
 
-clear()
-
-# the log file
-log = open(f"{os.getcwd()}/server.log", "w+", encoding="utf-8")
-log.write(f"{datetime.now()}: Log file created, all imports were successfull\n")
-
-os.system("pacman -S base-devel yay --noconfirm")
-log.write(f"{datetime.now()}: Installed base-devel with pacman\n")
-log.write(f"{datetime.now()}: Installed yay with pacman\n")
-
-
 def install_program(package_name: str,
                     package_manager: str,
                     description: str,
@@ -36,79 +25,71 @@ def install_program(package_name: str,
 
 
 clear()
+
+# the log file
+log = open(f"{os.getcwd()}/server.log", "w+", encoding="utf-8")
+log.write(f"{datetime.now()}: Log file created, all imports were successfull\n")
+
+os.system("pacman -S base-devel yay --noconfirm")
+log.write(f"{datetime.now()}: Installed base-devel and yay with pacman\n")
+
+
+clear()
 print(r"""
  ____                           
 / ___|  ___ _ ____   _____ _ __ 
 \___ \ / _ \ '__\ \ / / _ \ '__|
  ___) |  __/ |   \ V /  __/ |   
 |____/ \___|_|    \_/ \___|_|   
-            Install
 """)
 
-# gnome-disk-utility (Manage Partitions+Automount fstab GUI easily (sort of))
-yn = input(
-    "[?] Install - gnome-disk-utility (Manage Partitions+Automount fstab GUI):")
-if yn.lower().startswith("y"):
-    os.system("pacman -S gnome-disk-utility")
-    log.write(f"{datetime.now()}: Installed gnome-disk-utility with pacman\n")
-else:
-    print("[-] Skipping gnome-disk-utility")
-    log.write(f"{datetime.now()}: Not installing gnome-disk-utility\n")
 
-# openssh (for SSH Server)
-# https://linuxhint.com/arch_linux_ssh_server/
-yn = input("[?] Install - openssh (for SSH Server):")
-if yn.lower().startswith("y"):
-    os.system("pacman -S openssh")
-    log.write(f"{datetime.now()}: Installed openssh with yay\n")
-else:
-    print("[-] Skipping openssh")
-    log.write(f"{datetime.now()}: Not installing openssh\n")
+server_packages = (
+    (
+        "gnome-disk-utility",
+        "pacman",
+        "Manage Partitions+Automount fstab GUI"
+    ),
+    (
+        # https://linuxhint.com/arch_linux_ssh_server/
+        "openssh",
+        "pacman",
+        "for SSH Server"
+    ),
+    (
+        "jellyfin",
+        "yay",
+        "Media Server"
+    ),
+    (
+        "airsonic",
+        "yay",
+        "Music Server"
+    ),
+    (
+        "filebrowser",
+        "yay",
+        "File Browsing Server"
+    ),
+    (
+        "netdata",
+        "yay",
+        "Perfomance Monitor"
+    ),
+    (
+        "qbittorrent",
+        "pacman",
+        "Torrent Client"
+    )
+)
 
-# jellyfin (Media Server)
-yn = input("[?] Install - jellyfin (Media Server):")
-if yn.lower().startswith("y"):
-    os.system("yay -S jellyfin")
-    log.write(f"{datetime.now()}: Installed jellyfin with yay\n")
-else:
-    print("[-] Skipping jellyfin")
-    log.write(f"{datetime.now()}: Not installing jellyfin\n")
-
-# airsonic (Music Server)
-yn = input("[?] Install - airsonic (Music Server):")
-if yn.lower().startswith("y"):
-    os.system("yay -S airsonic")
-    log.write(f"{datetime.now()}: Installed airsonic with yay\n")
-else:
-    print("[-] Skipping airsonic")
-    log.write(f"{datetime.now()}: Not installing airsonic\n")
-
-# filebrowser (File Server)
-yn = input("[?] Install - filebrowser (Music Server):")
-if yn.lower().startswith("y"):
-    os.system("yay -S filebrowser")
-    log.write(f"{datetime.now()}: Installed filebrowser with yay\n")
-else:
-    print("[-] Skipping filebrowser")
-    log.write(f"{datetime.now()}: Not installing filebrowser\n")
-
-# netdata (Perfomance Monitor)
-yn = input("[?] Install - netdata (Perfomance Monitor):")
-if yn.lower().startswith("y"):
-    os.system("yay -S netdata")
-    log.write(f"{datetime.now()}: Installed netdata with yay\n")
-else:
-    print("[-] Skipping netdata")
-    log.write(f"{datetime.now()}: Not installing netdata\n")
-
-# qbittorrent (Torrent Client)
-yn = input("[?] Install - qbittorrent (Torrent Client):")
-if yn.lower().startswith("y"):
-    os.system("pacman -S qbittorrent")
-    log.write(f"{datetime.now()}: Installed qbittorrent with pacman\n")
-else:
-    print("[-] Skipping qbittorrent")
-    log.write(f"{datetime.now()}: Not installing qbittorrent\n")
+for server_package_name, server_package_manager, server_package_description in server_packages:
+    install_program(
+        package_name=server_package_name,
+        package_manager=server_package_manager,
+        description=server_package_description,
+        logfile=log
+    )
 
 
 log.write(f"{datetime.now()}: Installer completed")
