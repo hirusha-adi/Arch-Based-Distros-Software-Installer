@@ -1,4 +1,3 @@
-from io import TextIOWrapper
 import os
 import sys
 from datetime import datetime
@@ -953,6 +952,21 @@ def better_discord_plugins(logfile):
     print("[+] Installed all downloaded better discord plugins")
 
 
+def install_program(package_name: str,
+                    package_manager: str,
+                    description: str,
+                    logfile  # TextIOWrapper ?
+                    ):
+    yn = input(f"[?] Install - {package_name} ({description}):")
+    if yn.lower().startswith("y"):
+        os.system(f"{package_manager} -S {package_name}")
+        logfile.write(
+            f"{datetime.now()}: Installed {package_name} with {package_manager}\n")
+    else:
+        print(f"[-] Skipping {package_name}")
+        logfile.write(f"{datetime.now()}: Not installing {package_name}\n")
+
+
 clear()
 
 LOG = ""
@@ -973,68 +987,51 @@ print(r"""
  \___/ \__|_|_|_|\__|_|\___||___/
 """)
 
-# yakuake (drop down terminal)
-yn = input("[?] Install - yakuake (Drop down terminal): ")
-if yn.lower().startswith("y"):
-    os.system("pacman -S yakuake")
-    log.write(f"{datetime.now()}: Installed yakuake with pacman\n")
-else:
-    print("[-] Skipping yakuake")
-    log.write(f"{datetime.now()}: Not installing yakuake\n")
+utility_packages = (
+    (
+        "yakuake",
+        "pacman",
+        "Drop down terminal"
+    ),
+    (
+        "bpytop",
+        "pacman",
+        "system monitor tool"
+    ),
+    (
+        "htop",
+        "pacman",
+        "system monitor tool"
+    ),
+    (
+        "flameshot",
+        "pacman",
+        "screenshot utility"
+    ),
+    (
+        "spectacle",
+        "pacman"
+        "screenshot utility"
+    ),
+    (
+        "woeusb",
+        "pacman",
+        "OS flashing tool"
+    ),
+    (
+        "etcher",
+        "yay",
+        "OS flashing tool"
+    ),
+)
 
-# bpytop (system monitor tool)
-yn = input("[?] Install - bpytop (system monitor tool): ")
-if yn.lower().startswith("y"):
-    os.system("pacman -S bpytop")
-    log.write(f"{datetime.now()}: Installed bpytop with pacman\n")
-else:
-    print("[-] Skipping bpytop")
-    log.write(f"{datetime.now()}: Not installing bpytop\n")
-
-# htop (system monitor tool)
-yn = input("[?] Install - htop (system monitor tool): ")
-if yn.lower().startswith("y"):
-    os.system("pacman -S htop")
-    log.write(f"{datetime.now()}: Installed htop with pacman\n")
-else:
-    print("[-] Skipping htop")
-    log.write(f"{datetime.now()}: Not installing htop\n")
-
-# flameshot (shreenshot utility)
-yn = input("[?] Install - flameshot (shreenshot utility): ")
-if yn.lower().startswith("y"):
-    os.system("pacman -S flameshot")
-    log.write(f"{datetime.now()}: Installed flameshot with pacman\n")
-else:
-    print("[-] Skipping flameshot")
-    log.write(f"{datetime.now()}: Not installing flameshot\n")
-
-# spectacle (shreenshot utility)
-yn = input("[?] Install - spectacle (shreenshot utility): ")
-if yn.lower().startswith("y"):
-    os.system("pacman -S spectacle")
-    log.write(f"{datetime.now()}: Installed spectacle with pacman\n")
-else:
-    print("[-] Skipping spectacle")
-    log.write(f"{datetime.now()}: Not installing spectacle\n")
-
-# woeusb (OS flashing tool)
-yn = input("[?] Install - woeusb (OS flashing tool(For Windows)): ")
-if yn.lower().startswith("y"):
-    os.system("pacman -S woeusb")
-    log.write(f"{datetime.now()}: Installed woeusb with pacman\n")
-else:
-    print("[-] Skipping woeusb")
-    log.write(f"{datetime.now()}: Not installing woeusb\n")
-
-# etcher (OS flashing tool)
-yn = input("[?] Install - etcher (OS flashing tool(Balena Etcher)): ")
-if yn.lower().startswith("y"):
-    os.system("yay -S etcher")
-    log.write(f"{datetime.now()}: Installed etcher with yay\n")
-else:
-    print("[-] Skipping etcher")
-    log.write(f"{datetime.now()}: Not installing etcher\n")
+for utility_package_name, utility_package_manager, utility_package_description in utility_packages:
+    install_program(
+        package_name=utility_package_name,
+        package_manager=utility_package_manager,
+        description=utility_package_description,
+        logfile=log
+    )
 
 clear()
 print(r"""
@@ -1044,68 +1041,53 @@ print(r"""
 | |  | |  __/ (_| | | (_| |
 |_|  |_|\___|\__,_|_|\__,_|
 """)
-# gimp (photo editor)
-yn = input("[?] Install - gimp (shreenshot utility): ")
-if yn.lower().startswith("y"):
-    os.system("pacman -S gimp")
-    log.write(f"{datetime.now()}: Installed gimp with pacman\n")
-else:
-    print("[-] Skipping gimp")
-    log.write(f"{datetime.now()}: Not installing gimp\n")
 
-# jellyfin-media-player (Media Player for Jellyfin)
-yn = input("[?] Install - jellyfin-media-player (shreenshot utility): ")
-if yn.lower().startswith("y"):
-    os.system("yay -S jellyfin-media-player")
-    log.write(f"{datetime.now()}: Installed jellyfin-media-player with pacman\n")
-else:
-    print("[-] Skipping jellyfin-media-player")
-    log.write(f"{datetime.now()}: Not installing jellyfin-media-player\n")
+media_packages = (
+    (
+        "gimp",
+        "pacman",
+        "photo editor"
+    ),
+    (
+        "jellyfin-media-player",
+        "yay",
+        "Media Player for Jellyfin"
+    ),
+    (
+        "kdenlive",
+        "pacman",
+        "video editor"
+    ),
+    (
+        "okular",
+        "pacman",
+        "PDF viewer for KDE"
+    ),
+    (
+        "audacious",
+        "pacman",
+        "music player"
+    ),
+    (
+        "audacity",
+        "pacman",
+        "audio editor"
+    ),
+    (
+        "vlc",
+        "pacman",
+        "media player"
+    )
+)
 
-# kdenlive (video editor)
-yn = input("[?] Install - kdenlive (shreenshot utility): ")
-if yn.lower().startswith("y"):
-    os.system("pacman -S kdenlive")
-    log.write(f"{datetime.now()}: Installed kdenlive with pacman\n")
-else:
-    print("[-] Skipping kdenlive")
-    log.write(f"{datetime.now()}: Not installing kdenlive\n")
 
-# okular (PDF viewer for KDE)
-yn = input("[?] Install - okular (PDF viewer for KDE): ")
-if yn.lower().startswith("y"):
-    os.system("pacman -S okular")
-    log.write(f"{datetime.now()}: Installed okular with pacman\n")
-else:
-    print("[-] Skipping okular")
-    log.write(f"{datetime.now()}: Not installing okular\n")
-
-# audacious (music player)
-yn = input("[?] Install - audacious (music player): ")
-if yn.lower().startswith("y"):
-    os.system("pacman -S audacious")
-    log.write(f"{datetime.now()}: Installed audacious with pacman\n")
-else:
-    print("[-] Skipping audacious")
-    log.write(f"{datetime.now()}: Not installing audacious\n")
-
-# audacity (audio editor)
-yn = input("[?] Install - audacity (audio editor): ")
-if yn.lower().startswith("y"):
-    os.system("pacman -S audacity")
-    log.write(f"{datetime.now()}: Installed audacity with pacman\n")
-else:
-    print("[-] Skipping audacity")
-    log.write(f"{datetime.now()}: Not installing audacity\n")
-
-# vlc (media player)
-yn = input("[?] Install - vlc (media player): ")
-if yn.lower().startswith("y"):
-    os.system("pacman -S vlc")
-    log.write(f"{datetime.now()}: Installed vlc with pacman\n")
-else:
-    print("[-] Skipping vlc")
-    log.write(f"{datetime.now()}: Not installing vlc\n")
+for messaging_package_name, messaging_package_manager, messaging_package_description in media_packages:
+    install_program(
+        package_name=messaging_package_name,
+        package_manager=messaging_package_manager,
+        description=messaging_package_description,
+        logfile=log
+    )
 
 clear()
 print(r"""
@@ -1117,24 +1099,26 @@ print(r"""
                               |___/
 """)
 
-# zoom (online meeting platform)
-yn = input("[?] Install - zoom (online meeting platform): ")
-if yn.lower().startswith("y"):
-    os.system("yay -S zoom")
-    log.write(f"{datetime.now()}: Installed zoom with yay\n")
-else:
-    print("[-] Skipping zoom")
-    log.write(f"{datetime.now()}: Not installing zoom\n")
+meeting_packages = (
+    (
+        "zoom",
+        "yay",
+        "online meeting platform"
+    ),
+    (
+        "teams",
+        "yay",
+        "online meeting platform"
+    )
+)
 
-# teams (online meeting platform)
-yn = input("[?] Install - teams (online meeting platform): ")
-if yn.lower().startswith("y"):
-    os.system("yay -S teams")
-    log.write(f"{datetime.now()}: Installed teams with yay\n")
-else:
-    print("[-] Skipping teams")
-    log.write(f"{datetime.now()}: Not installing teams\n")
-
+for messaging_package_name, messaging_package_manager, messaging_package_description in meeting_packages:
+    install_program(
+        package_name=messaging_package_name,
+        package_manager=messaging_package_manager,
+        description=messaging_package_description,
+        logfile=log
+    )
 
 clear()
 print(r"""
@@ -1146,39 +1130,32 @@ print(r"""
                             |___/         |___/
 """)
 
-# telegram-desktop (messaging app)
-yn = input("[?] Install - telegram-desktop (messaging app): ")
-if yn.lower().startswith("y"):
-    os.system("pacman -S telegram-desktop")
-    log.write(f"{datetime.now()}: Installed telegram-desktop with pacman\n")
-else:
-    print("[-] Skipping telegram-desktop")
-    log.write(f"{datetime.now()}: Not installing telegram-desktop\n")
+messaging_packages = (
+    (
+        "telegram-desktop",
+        "pacman",
+        "messaging app"
+    ),
+    (
+        "whatsapp-for-linux",
+        "pacman",
+        "messaging app"
+    ),
+    (
+        "signal-desktop",
+        "pacman",
+        "messaging app"
+    )
+)
 
-# whatsapp-for-linux (messaging app)
-yn = input("[?] Install - whatsapp-for-linux (messaging app): ")
-if yn.lower().startswith("y"):
-    os.system("yay -S whatsapp-for-linux")
-    log.write(f"{datetime.now()}: Installed whatsapp-for-linux with yay\n")
-else:
-    print("[-] Skipping whatsapp-for-linux")
-    log.write(f"{datetime.now()}: Not installing whatsapp-for-linux\n")
 
-# signal-desktop (messaging app)
-yn = input("[?] Install - signal-desktop (messaging app): ")
-if yn.lower().startswith("y"):
-    os.system("pacman -S signal-desktop")
-    log.write(f"{datetime.now()}: Installed signal-desktop with pacman\n")
-else:
-    print("[-] Skipping signal-desktop")
-    log.write(f"{datetime.now()}: Not installing signal-desktop\n")
-
-# discord (messaging app)
+# discord (messaging app) seperate custom command because of better discord and plugins
 yn = input("[?] Install - discord (messaging app): ")
 if yn.lower().startswith("y"):
     os.system("pacman -S discord")
     log.write(f"{datetime.now()}: Installed discord with pacman\n")
 
+    # better discord
     yn = input("[?] Install - better discord (for discord): ")
     if yn.lower().startswith("y"):
         os.system(
@@ -1188,15 +1165,28 @@ if yn.lower().startswith("y"):
         log.write(
             f"{datetime.now()}: Installed better discord for discord manually\n")
         os.system("betterdiscordctl install")
-
         yn = input(
-            "[?] Install - better discord plugins and themes (betterdiscord): ")
+            "[?] Install - better discord plugins (betterdiscord): ")
         if yn.lower().startswith("y"):
             better_discord_plugins(logfile=log)
-
+        else:
+            print("[-] Skipping better better discord plugins")
+            log.write(
+                f"{datetime.now()}: Not installing better discord plugins\n")
+    else:
+        print("[-] Skipping better discord")
+        log.write(f"{datetime.now()}: Not installing better discord\n")
 else:
     print("[-] Skipping discord")
     log.write(f"{datetime.now()}: Not installing discord\n")
+
+for messaging_package_name, messaging_package_manager, messaging_package_description in messaging_packages:
+    install_program(
+        package_name=messaging_package_name,
+        package_manager=messaging_package_manager,
+        description=messaging_package_description,
+        logfile=log
+    )
 
 
 clear()
