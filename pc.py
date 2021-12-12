@@ -1081,10 +1081,10 @@ media_packages = (
 )
 
 
-for messaging_package_name, messaging_package_manager, messaging_package_description in media_packages:
+for development_package_name, development_package_manager, messaging_package_description in media_packages:
     install_program(
-        package_name=messaging_package_name,
-        package_manager=messaging_package_manager,
+        package_name=development_package_name,
+        package_manager=development_package_manager,
         description=messaging_package_description,
         logfile=log
     )
@@ -1112,10 +1112,10 @@ meeting_packages = (
     )
 )
 
-for messaging_package_name, messaging_package_manager, messaging_package_description in meeting_packages:
+for development_package_name, development_package_manager, messaging_package_description in meeting_packages:
     install_program(
-        package_name=messaging_package_name,
-        package_manager=messaging_package_manager,
+        package_name=development_package_name,
+        package_manager=development_package_manager,
         description=messaging_package_description,
         logfile=log
     )
@@ -1180,10 +1180,10 @@ else:
     print("[-] Skipping discord")
     log.write(f"{datetime.now()}: Not installing discord\n")
 
-for messaging_package_name, messaging_package_manager, messaging_package_description in messaging_packages:
+for development_package_name, development_package_manager, messaging_package_description in messaging_packages:
     install_program(
-        package_name=messaging_package_name,
-        package_manager=messaging_package_manager,
+        package_name=development_package_name,
+        package_manager=development_package_manager,
         description=messaging_package_description,
         logfile=log
     )
@@ -1199,60 +1199,47 @@ print(r"""
                              |_|
 """)
 
-# eclipse-java (IDE for Java)
-yn = input("[?] Install - eclipse-java (IDE for Java): ")
-if yn.lower().startswith("y"):
-    os.system("yay -S eclipse-java")
-    log.write(f"{datetime.now()}: Installed eclipse-java with yay\n")
-else:
-    print("[-] Skipping eclipse-java")
-    log.write(f"{datetime.now()}: Not installing eclipse-java\n")
+development_packages = (
+    (
+        "eclipse-java",
+        "yay",
+        "IDE for Java"
+    ),
+    (
+        "visual-studio-code-bin",
+        "yay",
+        "IDE"
+    ),
+    (
+        "vscodium",
+        "yay",
+        "IDE (Open Source VS-Code)"
+    ),
+    (
+        "pycharm-community-edition",
+        "yay",
+        "IDE for Python"
+    ),
+    (
+        "sublime-text-4",
+        "yay",
+        "Text Editor"
+    ),
+    (
+        "github-desktop",
+        "yay",
+        "Code Management and Version Control System"
+    ),
+)
 
-# visual-studio-code-bin (IDE)
-yn = input("[?] Install - visual-studio-code-bin (IDE for Java): ")
-if yn.lower().startswith("y"):
-    os.system("yay -S visual-studio-code-bin")
-    log.write(f"{datetime.now()}: Installed visual-studio-code-bin with yay\n")
-else:
-    print("[-] Skipping visual-studio-code-bin")
-    log.write(f"{datetime.now()}: Not installing visual-studio-code-bin\n")
 
-# vscodium (IDE (Open Source VS-Code))
-yn = input("[?] Install - vscodium (IDE (Open Source VS-Code)): ")
-if yn.lower().startswith("y"):
-    os.system("yay -S vscodium")
-    log.write(f"{datetime.now()}: Installed vscodium with yay\n")
-else:
-    print("[-] Skipping vscodium")
-    log.write(f"{datetime.now()}: Not installing vscodium\n")
-
-# pycharm-community-edition (IDE for Python)
-yn = input("[?] Install - pycharm-community-edition (IDE for Python): ")
-if yn.lower().startswith("y"):
-    os.system("yay -S pycharm-community-edition")
-    log.write(
-        f"{datetime.now()}: Installed pycharm-community-edition with yay\n")
-else:
-    print("[-] Skipping pycharm-community-edition")
-    log.write(f"{datetime.now()}: Not installing pycharm-community-edition\n")
-
-# sublime-text-4 (Text Editor))
-yn = input("[?] Install - sublime-text-4 (Text Editor): ")
-if yn.lower().startswith("y"):
-    os.system("yay -S sublime-text-4")
-    log.write(f"{datetime.now()}: Installed sublime-text-4 with yay\n")
-else:
-    print("[-] Skipping sublime-text-4")
-    log.write(f"{datetime.now()}: Not installing sublime-text-4\n")
-
-# github-desktop (Management)
-yn = input("[?] Install - github-desktop (Management): ")
-if yn.lower().startswith("y"):
-    os.system("yay -S github-desktop")
-    log.write(f"{datetime.now()}: Installed github-desktop with yay\n")
-else:
-    print("[-] Skipping github-desktop")
-    log.write(f"{datetime.now()}: Not installing github-desktop\n")
+for development_package_name, development_package_manager, messaging_package_description in development_packages:
+    install_program(
+        package_name=development_package_name,
+        package_manager=development_package_manager,
+        description=messaging_package_description,
+        logfile=log
+    )
 
 log.write(f"{datetime.now()}: Installer completed. Have a nice day!")
 log.close()
