@@ -11,14 +11,28 @@ def clear():
 
 clear()
 
+# the log file
 log = open(f"{os.getcwd()}/server.log", "w+", encoding="utf-8")
 log.write(f"{datetime.now()}: Log file created, all imports were successfull\n")
 
-os.system("pacman -S base-devel --noconfirm")
+os.system("pacman -S base-devel yay --noconfirm")
 log.write(f"{datetime.now()}: Installed base-devel with pacman\n")
-
-os.system("pacman -S yay --noconfirm")
 log.write(f"{datetime.now()}: Installed yay with pacman\n")
+
+
+def install_program(package_name: str,
+                    package_manager: str,
+                    description: str,
+                    logfile  # TextIOWrapper ?
+                    ):
+    yn = input(f"[?] Install - {package_name} ({description}):")
+    if yn.lower().startswith("y"):
+        os.system(f"{package_manager} -S {package_name}")
+        logfile.write(
+            f"{datetime.now()}: Installed {package_name} with {package_manager}\n")
+    else:
+        print(f"[-] Skipping {package_name}")
+        logfile.write(f"{datetime.now()}: Not installing {package_name}\n")
 
 
 clear()
