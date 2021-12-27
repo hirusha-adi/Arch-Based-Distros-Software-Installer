@@ -1010,7 +1010,7 @@ utility_packages = (
     ),
     (
         "spectacle",
-        "pacman"
+        "pacman",
         "screenshot utility"
     ),
     (
@@ -1022,7 +1022,7 @@ utility_packages = (
         "etcher",
         "yay",
         "OS flashing tool"
-    ),
+    )
 )
 
 for utility_package_name, utility_package_manager, utility_package_description in utility_packages:
